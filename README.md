@@ -31,7 +31,7 @@ This Majority Voting Rule enables me to make a confident decision about the auth
 
 ## Architectural Diagram of my model
 
-![Architecture Diagram]()
+![Architecture Diagram](https://github.com/fromjyce/DeepfakeDetection/blob/main/ArchitectureDiagram.png)
 
 ## Running of the Programs
 The programs have been tested on Google Colab for training and testing, while I used the Visual Studio Code IDE in Windows 11 to develop a website for this model. ***You are free to choose any IDE that suits your needs.***
