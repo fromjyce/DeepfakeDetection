@@ -29,7 +29,9 @@ I repeat this process for all the frames in the video, maintaining counts of rea
 
 This Majority Voting Rule enables me to make a confident decision about the authenticity of the video based on the cumulative assessment of its constituent frames. It's a pivotal component of my video classification process, ensuring a robust and reliable approach to deepfake detection.
 
-## Architectural Diagram of my model
+## Evaluation Metrics / Performance Metrics
+
+## Architectural Diagram of the Model
 
 ![Architecture Diagram](https://github.com/fromjyce/DeepfakeDetection/blob/main/ArchitectureDiagram.png)
 
