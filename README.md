@@ -3,6 +3,45 @@ Welcome to my GitHub repository for the "InceptionResNet-BiLSTM Deepfake Detecti
 
 ## Structure of The Repository
 
+### [Building Model and Testing](https://github.com/fromjyce/DeepfakeDetection/tree/main/BuildingModelandTesting)
+  * [PreProcessing.ipynb](https://github.com/fromjyce/DeepfakeDetection/blob/main/BuildingModelandTesting/PreProcessing.ipynb): This code file contains the code for preprocessing videos where the `frames are extracted using OpenCV`, the `faces are detected using MTCNN`, and the `frames are resized using OpenCV`. The videos are parallelly processed to prevent resource exhaustion using `ThreadPoolExecutor`.
+  * [InceptionResNet-BiLSTMModelBuild.ipynb](https://github.com/fromjyce/DeepfakeDetection/blob/main/BuildingModelandTesting/InceptionResNet-BiLSTMModelBuild.ipynb): This code file contains the code for the entire architecture of the customized InceptionResNetV2-BiLSTM hybrid model. The following tasks have been completed:
+      * Base Model
+          * Use InceptionResNetV2 as the base model with frozen weights.
+          * Library: `tensorflow.keras.applications.InceptionResNetV2`
+      * Time-Distributed Dense and Dropout Layers
+          * Add a time-distributed dense layer with 128 units.
+          * Add a time-distributed dropout layer with a dropout rate of 0.5.
+          * Library: `tensorflow.keras.layers.TimeDistributed`, `tensorflow.keras.layers.Dense`, `tensorflow.keras.layers.Dropout`
+      * Time-Distributed Flattening
+          * Apply time-distributed flattening.
+          * Library: `tensorflow.keras.layers.TimeDistributed`, `tensorflow.keras.layers.Flatten`
+      * Bi-Directional LSTM Layers
+          * Stack bidirectional LSTM layers:
+              * First layer: LSTM with 128 units, return sequences, dropout of 0.2, and recurrent dropout of 0.2.
+              * Second layer: LSTM with 64 units, return sequences, dropout of 0.2, and recurrent dropout of 0.2.
+          * Library:  `tensorflow.keras.layers.Bidirectional`, `tensorflow.keras.layers.LSTM`
+      * Additional Time-Distributed Dense and Dropout Layers
+          * Add a time-distributed dense layer with 64 units and 'relu' activation.
+          * Add a time-distributed dropout layer with a dropout rate of 0.5.
+          * Library: `tensorflow.keras.layers.TimeDistributed`, `tensorflow.keras.layers.Dense`, `tensorflow.keras.layers.Dropout`
+      * Final Dense Layer
+          * Generate predictions with a dense layer using softmax activation.
+          * Library: `tensorflow.keras.layers.Dense`
+      * Model Construction
+          * Create a Keras Model with the specified input and output (InceptionResNetV2 input and predictions as output).
+          * Library: `tensorflow.keras.models.Model`
+      * Instantiate the model by calling `build_model` with the number of classes set to 2.
+      * Compile the Model
+          * Use the Adam optimizer with a specified learning rate.
+          * Set the loss function to categorical crossentropy.
+          * Monitor accuracy as the evaluation metric.
+      * Fit the Model
+          * Train the model on the input data and one-hot encoded labels.
+          * Specify the number of epochs and batch size.
+        
+  * [TesterCode.ipynb](https://github.com/fromjyce/DeepfakeDetection/blob/main/BuildingModelandTesting/TesterCode.ipynb): This code file contains the code to test the saved model. The input video file is provided to determine whether the file is a deepfake or not.
+
 ## Methodology
 ### Dataset Utilized
 I employed a [Kaggle dataset](https://www.kaggle.com/competitions/deepfake-detection-challenge/data) that was originally provided for the [Deepfake Detection Challenge](https://www.kaggle.com/competitions/deepfake-detection-challenge/overview) competition to train my model. This dataset comprised 400 videos along with a JSON file containing detailed information for each video, including labels indicating whether the video is genuine or fake. In cases where the video was identified as fake, the original video's name was also documented as part of the dataset.
