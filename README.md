@@ -1,6 +1,5 @@
 # Deepfake Detection with InceptionResNetV2 and BiLSTM
-
-Welcome to the "InceptionResNet-BiLSTM Deepfake Detection" repository. This project presents a sophisticated deep learning framework that integrates InceptionResNetV2 with Bidirectional Long Short-Term Memory (BiLSTM) networks to improve the precision of deepfake video detection. In response to the growing challenges posed by deepfake content in digital media, this model aims to deliver a robust and scalable solution for detecting manipulated videos, thereby supporting efforts to maintain the integrity and authenticity of multimedia content.
+The "InceptionResNet-BiLSTM Deepfake Detection" project provides a sophisticated deep learning framework that combines InceptionResNetV2 and Bidirectional Long Short-Term Memory (BiLSTM) networks to enhance the accuracy of deepfake video detection. This model addresses the increasing prevalence of deepfake content in digital media by offering a robust and scalable solution for detecting manipulated videos, contributing to the ongoing efforts to safeguard the authenticity and integrity of multimedia content.
 
 ## Repository Structure
 
